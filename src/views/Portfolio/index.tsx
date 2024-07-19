@@ -3,7 +3,7 @@ import styles from './portfolio.module.scss';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { fetchLanyardData, LanyardData } from '../../pages/api/lanyardApi';
-import { fetchGitHubProjects, GitHubRepo } from '../../pages/api/githubApi'; 
+import { fetchGitHubProjects, GitHubRepo } from '../../pages/api/githubApi';
 
 const PortfolioViews = () => {
     const [lanyardData, setLanyardData] = useState<LanyardData | null>(null);
@@ -18,9 +18,9 @@ const PortfolioViews = () => {
             try {
                 const [lanyardRes, githubRes] = await Promise.all([
                     fetchLanyardData(userId),
-                    fetchGitHubProjects('AbbyHendraa') // Ganti dengan username GitHub yang ingin Anda ambil proyeknya
+                    fetchGitHubProjects('abbyhendraprayoga') // Ganti dengan username GitHub yang ingin Anda ambil proyeknya
                 ]);
-                
+
                 setLanyardData(lanyardRes);
                 setGitHubRepo(githubRes);
             } catch (error: any) {
@@ -74,7 +74,7 @@ const PortfolioViews = () => {
                                         <Link href={githubRepo.html_url}>{githubRepo.name}</Link>
                                     ) : (
                                         <span className={styles.projectInfoLoading}>
-                                        Loading<span className={styles.dot}>...</span>
+                                            Loading<span className={styles.dot}>...</span>
                                         </span>
                                     )}
                                 </div>
@@ -103,7 +103,7 @@ const PortfolioViews = () => {
                     <div className={styles.profileHeaders}>
                         <Image
                             src={`https://cdn.discordapp.com/avatars/${lanyardData?.data.discord_user.id}/${lanyardData?.data.discord_user.avatar}.png`}
-                            // alt={lanyardData?.data.discord_user.username || "User Avatar"}
+                            alt={lanyardData?.data.discord_user.username || "User Avatar"}
                             width={100}
                             height={100}
                             className={styles.profilePicture}
